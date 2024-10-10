@@ -1,6 +1,7 @@
 package tw.edu.tp.taivs.classconnect.ui.login
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -33,6 +34,9 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import classconnect.composeapp.generated.resources.Res
+import classconnect.composeapp.generated.resources.logo
+import org.jetbrains.compose.resources.painterResource
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -55,6 +59,7 @@ fun LoginScreen(
                 .padding(padding)
                 .fillMaxSize()
         ) {
+            Image(painterResource(Res.drawable.logo), null)
             Text(text = "ClassConnect", style = MaterialTheme.typography.displayLarge)
             Text(text = "Log In", style = MaterialTheme.typography.displayMedium)
             SingleChoiceSegmentedButtonRow {

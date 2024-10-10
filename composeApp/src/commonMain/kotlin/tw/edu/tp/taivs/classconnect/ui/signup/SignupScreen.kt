@@ -1,5 +1,6 @@
 package tw.edu.tp.taivs.classconnect.ui.signup
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -24,6 +25,9 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import classconnect.composeapp.generated.resources.Res
+import classconnect.composeapp.generated.resources.logo
+import org.jetbrains.compose.resources.painterResource
 
 @Composable
 fun SignupScreen(
@@ -41,6 +45,7 @@ fun SignupScreen(
                 .padding(padding)
                 .fillMaxSize()
         ) {
+            Image(painterResource(Res.drawable.logo), null)
             Text(text = "ClassConnect", style = MaterialTheme.typography.displayLarge)
             Text(text = "Sign Up", style = MaterialTheme.typography.displayMedium)
             Column(Modifier.width(TextFieldDefaults.MinWidth)) {
