@@ -43,10 +43,13 @@ class LoginViewModel(signedUpUsername: String?) : ViewModel() {
                 passwordError = if (it.password.isEmpty()) "Required." else null
             )
         }
-        if (uiStateFlow.value
-                .run { listOf(usernameError, passwordError) }
-                .any { it != null }
-        ) return
-        onSuccess()
+        uiStateFlow.value.run {
+            if (listOf(
+                    usernameError,
+                    passwordError
+                ).any { it != null }
+            ) return
+            onSuccess()
+        }
     }
 }
