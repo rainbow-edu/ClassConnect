@@ -60,8 +60,8 @@ fun LoginScreen(
                 .fillMaxSize()
         ) {
             Image(painterResource(Res.drawable.logo), null)
-            Text(text = "ClassConnect", style = MaterialTheme.typography.displayLarge)
-            Text(text = "Log In", style = MaterialTheme.typography.displayMedium)
+            Text(text = "ClassConnect", style = MaterialTheme.typography.displayMedium)
+            Text(text = "Log In", style = MaterialTheme.typography.displaySmall)
             SingleChoiceSegmentedButtonRow {
                 LoginRole.entries.forEachIndexed { index, role ->
                     SegmentedButton(

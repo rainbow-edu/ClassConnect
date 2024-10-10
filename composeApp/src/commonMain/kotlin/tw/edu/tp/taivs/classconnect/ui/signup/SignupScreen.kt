@@ -46,8 +46,8 @@ fun SignupScreen(
                 .fillMaxSize()
         ) {
             Image(painterResource(Res.drawable.logo), null)
-            Text(text = "ClassConnect", style = MaterialTheme.typography.displayLarge)
-            Text(text = "Sign Up", style = MaterialTheme.typography.displayMedium)
+            Text(text = "ClassConnect", style = MaterialTheme.typography.displayMedium)
+            Text(text = "Sign Up", style = MaterialTheme.typography.displaySmall)
             Column(Modifier.width(TextFieldDefaults.MinWidth)) {
                 Row {
                     TextField(
