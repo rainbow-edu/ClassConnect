@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.calculateStartPadding
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -23,6 +24,7 @@ import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -69,32 +71,34 @@ fun LoginScreen(
                     }
                 }
             }
-            TextField(
-                value = uiState.username,
-                onValueChange = viewModel::changeUsername,
-                isError = uiState.usernameError != null,
-                supportingText = { Text(uiState.usernameError ?: "") },
-                keyboardOptions = KeyboardOptions(
-                    keyboardType = KeyboardType.Ascii,
-                    imeAction = ImeAction.Next
-                ),
-                singleLine = true,
-                label = { Text("Username") }
-            )
-            TextField(
-                value = uiState.password,
-                onValueChange = viewModel::changePassword,
-                isError = uiState.passwordError != null,
-                supportingText = { Text(uiState.passwordError ?: "") },
-                keyboardActions = KeyboardActions(onDone = { viewModel.logIn(onLogIn) }),
-                keyboardOptions = KeyboardOptions(
-                    keyboardType = KeyboardType.Password,
-                    imeAction = ImeAction.Done
-                ),
-                visualTransformation = PasswordVisualTransformation(),
-                singleLine = true,
-                label = { Text("Password") }
-            )
+            Column(Modifier.width(TextFieldDefaults.MinWidth)) {
+                TextField(
+                    value = uiState.username,
+                    onValueChange = viewModel::changeUsername,
+                    isError = uiState.usernameError != null,
+                    supportingText = { Text(uiState.usernameError ?: "") },
+                    keyboardOptions = KeyboardOptions(
+                        keyboardType = KeyboardType.Ascii,
+                        imeAction = ImeAction.Next
+                    ),
+                    singleLine = true,
+                    label = { Text("Username") }
+                )
+                TextField(
+                    value = uiState.password,
+                    onValueChange = viewModel::changePassword,
+                    isError = uiState.passwordError != null,
+                    supportingText = { Text(uiState.passwordError ?: "") },
+                    keyboardActions = KeyboardActions(onDone = { viewModel.logIn(onLogIn) }),
+                    keyboardOptions = KeyboardOptions(
+                        keyboardType = KeyboardType.Password,
+                        imeAction = ImeAction.Done
+                    ),
+                    visualTransformation = PasswordVisualTransformation(),
+                    singleLine = true,
+                    label = { Text("Password") }
+                )
+            }
             Button({ viewModel.logIn(onLogIn) }) {
                 Text("Log in")
             }
