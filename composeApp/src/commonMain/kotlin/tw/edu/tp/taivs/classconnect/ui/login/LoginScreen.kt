@@ -1,15 +1,13 @@
 package tw.edu.tp.taivs.classconnect.ui.login
 
-import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.calculateStartPadding
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
@@ -29,7 +27,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -102,30 +99,19 @@ fun LoginScreen(
             Button({ viewModel.logIn(onLogIn) }) {
                 Text("Log in")
             }
-            Row(verticalAlignment = Alignment.CenterVertically) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.height(ButtonDefaults.MinHeight + 8.dp)
+            ) {
                 Text("Don't have an account?")
-                AnimatedContent(uiState.role) {
-                    when (it) {
-                        LoginRole.Student -> {
-                            Text(
-                                text = "Contact your teacher for support.",
-                                modifier = Modifier
-                                    .padding(
-                                        start = ButtonDefaults.TextButtonContentPadding
-                                            .calculateStartPadding(LocalLayoutDirection.current)
-                                    )
-                                    .height(ButtonDefaults.MinHeight + 8.dp)
-                                    .wrapContentHeight()
-                            )
-                        }
-
-                        LoginRole.Teacher -> {
-                            TextButton(onSignUpClick) {
-                                Text("Sign up")
-                            }
-                        }
+                AnimatedVisibility(uiState.role == LoginRole.Teacher) {
+                    TextButton(onSignUpClick) {
+                        Text("Sign up")
                     }
                 }
+            }
+            AnimatedVisibility(uiState.role == LoginRole.Student) {
+                Text("Contact your teacher for support.")
             }
         }
     }
