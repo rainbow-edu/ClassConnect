@@ -1,13 +1,28 @@
 package tw.edu.tp.taivs.classconnect.ui.login
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 
-class LoginViewModel : ViewModel() {
-    private val _uiStateFlow = MutableStateFlow(LoginUiState())
+class LoginViewModel(signedUpUsername: String?) : ViewModel() {
+    private val _uiStateFlow = MutableStateFlow(
+        LoginUiState(
+            role = if (signedUpUsername != null) LoginRole.Teacher else LoginRole.Student,
+            username = signedUpUsername ?: ""
+        )
+    )
     val uiStateFlow = _uiStateFlow.asStateFlow()
+
+    init {
+        if (signedUpUsername != null) {
+            viewModelScope.launch {
+                uiStateFlow.value.snackbarHostState.showSnackbar("Signed up successfully.")
+            }
+        }
+    }
 
     fun changeRole(value: LoginRole) {
         _uiStateFlow.update { it.copy(role = value) }

@@ -19,6 +19,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SegmentedButton
 import androidx.compose.material3.SegmentedButtonDefaults
 import androidx.compose.material3.SingleChoiceSegmentedButtonRow
+import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
@@ -36,10 +37,18 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LoginScreen(onLogIn: () -> Unit, onSignUpClick: () -> Unit, modifier: Modifier = Modifier) {
-    val viewModel = viewModel<LoginViewModel>()
+fun LoginScreen(
+    onLogIn: () -> Unit,
+    onSignUpClick: () -> Unit,
+    signedUpUsername: String?,
+    modifier: Modifier = Modifier
+) {
+    val viewModel = viewModel { LoginViewModel(signedUpUsername) }
     val uiState by viewModel.uiStateFlow.collectAsStateWithLifecycle()
-    Scaffold(modifier) { padding ->
+    Scaffold(
+        snackbarHost = { SnackbarHost(uiState.snackbarHostState) },
+        modifier = modifier
+    ) { padding ->
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
