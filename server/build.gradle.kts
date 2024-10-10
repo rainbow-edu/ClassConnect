@@ -8,7 +8,8 @@ group = "tw.edu.tp.taivs.classconnect"
 version = "1.0.0"
 application {
     mainClass.set("tw.edu.tp.taivs.classconnect.ApplicationKt")
-    applicationDefaultJvmArgs = listOf("-Dio.ktor.development=${extra["io.ktor.development"] ?: "false"}")
+    applicationDefaultJvmArgs =
+        listOf("-Dio.ktor.development=${extra["io.ktor.development"] ?: "false"}")
 }
 
 dependencies {
