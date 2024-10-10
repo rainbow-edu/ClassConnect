@@ -24,6 +24,7 @@ ktor-server-netty = { group = "io.ktor", name = "ktor-server-netty-jvm", version
 ktor-server-tests = { group = "io.ktor", name = "ktor-server-tests-jvm", version.ref = "ktor" }
 
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
+androidx-lifecycle-viewmodel-compose = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "androidx-lifecycle" }
 androidx-navigation-compose = { group = "org.jetbrains.androidx.navigation", name = "navigation-compose", version.ref = "androidx-navigation" }
 
 [plugins]
